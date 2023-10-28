@@ -20,37 +20,78 @@ body {
   background-position: center;
   background-repeat: no-repeat;
 }
-
 .contenedorGeneral {
   width: 80%;
   margin: 0 auto;
   height: 100vh;
-  border: 1px solid rgba(0,0,0,0.1);
-  background-color: rgba(0,0,0,0.5);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.5);
 }
-.titulo{
+.titulo {
   text-align: center;
-  color: rgb(172, 248, 248);
 }
 
-.contenidos{
-  border: 1px solid azure;
+.contenidos {
   width: 60%;
-  height: 300px;
+  height: auto;
   margin: auto;
   display: flex;
   flex-wrap: wrap;
-  justify-content:space-between;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 10px;
 }
 
-.contenidos >*{
-  border: 1px solid azure;
+.contenidos > * {
+  border: 1px solid rgb(172, 248, 248);
+  border-radius: 10px;
 }
 
-.formularioIngreso{
+.formularioIngreso {
   flex: 1;
+  display: grid;
+  place-items: center;
+  padding: 10px;
 }
 
-.spanResultados{
+.tituloFormulario {
+  margin-bottom: 10px;
+  font-size: 1.5em;
+  font-weight: 500;
+}
+
+label {
+  font-size: 1.2em;
+  font-weight: 500;
+}
+
+input {
+  margin-bottom: 8px;
+  text-align: center;
+  font-size: 1.1em;
+  font-weight: 600;
+  padding: 3px;
+  background: rgba(0, 0, 0, 0.5);
+  color: silver;
+  border: 1px solid silver;
+  border-radius: 5px;
+}
+
+button {
+  font-size: 1.1em;
+  font-weight: 500;
+  color: rgb(172, 248, 248);
+  padding: 5px 10px;
+  border-radius: 20px;
+  background: transparent;
+  border: 1px solid rgb(172, 248, 248);
+  cursor: pointer;
+}
+
+button:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.spanResultados {
   flex: 1;
 }
