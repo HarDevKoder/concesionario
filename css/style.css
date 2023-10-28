@@ -1,0 +1,56 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "miFuente";
+  src: url("../fuentes/helvetica.ttf");
+}
+
+html {
+  font-family: miFuente;
+  color: rgb(172, 248, 248);
+}
+
+body {
+  background-image: url("../imagenes/fondo.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.contenedorGeneral {
+  width: 80%;
+  margin: 0 auto;
+  height: 100vh;
+  border: 1px solid rgba(0,0,0,0.1);
+  background-color: rgba(0,0,0,0.5);
+}
+.titulo{
+  text-align: center;
+  color: rgb(172, 248, 248);
+}
+
+.contenidos{
+  border: 1px solid azure;
+  width: 60%;
+  height: 300px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content:space-between;
+}
+
+.contenidos >*{
+  border: 1px solid azure;
+}
+
+.formularioIngreso{
+  flex: 1;
+}
+
+.spanResultados{
+  flex: 1;
+}
