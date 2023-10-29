@@ -76,7 +76,7 @@ label {
 }
 
 input {
-  margin-bottom: 3px;
+  margin-bottom: 12px;
   text-align: center;
   font-size: 1.1em;
   font-weight: 600;
@@ -110,7 +110,9 @@ button:hover {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    padding: 0px;
+    align-items: center;
+    padding: 0;
+    gap: 0;
   }
 
   .titulo {
@@ -119,6 +121,18 @@ button:hover {
     flex: 100%;
     font-size: 0.7em;
   }
+
+  .formularioIngreso {
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 20px;
+  border: 1px solid silver;
+  margin-right: 0px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
 
   .spanResultados > * {
     flex-basis: 49%;
