@@ -19,6 +19,7 @@ const tarjetaDatosAuto = () =>{
   tarjeta.style.height = '200px';
   tarjeta.style.background = 'transparent';
   tarjeta.style.border = '1px solid silver';
+  tarjeta.style.borderRadius = '10px';
   spanResultados.appendChild(tarjeta);
 }
 

@@ -47,6 +47,7 @@ body {
   padding: 10px;
   border: 1px solid silver;
   margin-right: 20px;
+  border-radius: 10px;
 }
 
 .spanResultados {
@@ -55,9 +56,10 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
+  padding: 5px;
 }
 
-.spanResultados >*{
+.spanResultados > * {
   flex-basis: 24.5%;
 }
 
@@ -99,4 +101,26 @@ button {
 
 button:hover {
   background: rgba(0, 0, 0, 0.7);
+}
+
+/* Estilos Mobile */
+@media (max-width: 600px) {
+  .contenedorGeneral {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0px;
+  }
+
+  .titulo {
+    text-align: center;
+    /* border: 1px solid silver; */
+    flex: 100%;
+    font-size: 0.7em;
+  }
+
+  .spanResultados > * {
+    flex-basis: 49%;
+  }
 }
