@@ -10,6 +10,7 @@ const btnMostrar = document.getElementById('btnMostrar');
 let codigo = 0;
 let arrayAutos = [];
 let autoRegistrado;
+
 // ----------------------------------------------------------------------------------------
 // Funciones
 // ----------------------------------------------------------------------------------------
