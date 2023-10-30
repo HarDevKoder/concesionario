@@ -17,9 +17,21 @@ let autoRegistrado;
 // Funcion que crea la tarjeta que muestra datos del auto
 const crearTarjetaDatos = () => {
   const spanResultados = document.getElementById('spanResultados');
+
   const tarjeta = document.createElement('div');
   tarjeta.classList.add('tarjeta');
+  
+  const cajaImagenTarjeta = document.createElement('div');
+  cajaImagenTarjeta.classList.add('cajaImagenTarjeta');
+  cajaImagenTarjeta.classList.add('icon-car');
+  
+  
+  const cajaDatosTarjeta = document.createElement('div');
+  cajaDatosTarjeta.classList.add('cajaDatosTarjeta');
+
+
   spanResultados.appendChild(tarjeta);
+  tarjeta.append(cajaImagenTarjeta,cajaDatosTarjeta);
 }
 
 // Funcion que extrae el valor de los inputs y los guarda en un Array
@@ -51,11 +63,6 @@ Auto.prototype.venderAuto = function (auto, titular) {
 // Método para encender el Auto
 Auto.prototype.encender = function (auto) {
   alert(`El Auto ${auto} está  en marcha`);
-}
-
-// Método para mostrar la información del Auto
-Auto.prototype.verAuto = function (auto) {
-
 }
 
 // Función para instanciar Autos
@@ -101,7 +108,7 @@ btnRegistrar.addEventListener('click', () => {
 });
 
 btnMostrar.addEventListener('click', () => {
-  for (let i = 1; i <= 3; i++) {
+  for (let i = 1; i <= 4; i++) {
     crearTarjetaDatos();
   }
 });
