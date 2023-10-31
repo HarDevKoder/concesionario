@@ -97,11 +97,26 @@ const validarInputs = (valoresInputsArr) => {
   if (valoresInputsArr.some(input => input === '')) {
     alert('llena todos los campos!');
   } else {
-    datosValidos = true;
+    //Extraigo el año de los datos inresados
+    let anio = valoresInputsArr.splice(3, 1)[0];
+
+    // Evaluo los inputs de text para evitar ingresos numericos
+    let regex = /[\d]/g;
+    if (valoresInputsArr.some(input => regex.test(input))) {
+      alert('No se aceptan Datos Numéricos!');
+    } else {
+      // Valido campo numerico(anio)
+      let regex = /^[0-9]*$/;
+      if (regex.test(anio)) {
+        alert("Datos registrados exitosamente!");
+        datosValidos = true;
+      } else {
+        alert("Año debe ser numérico!");
+      }
+    }
   }
   return datosValidos;
 }
-
 // ----------------------------------------------------------------------------------------
 // Programa Principal
 // ----------------------------------------------------------------------------------------
