@@ -3,6 +3,7 @@
 // ----------------------------------------------------------------------------------------
 const btnRegistrar = document.getElementById('btnRegistrar');
 const btnMostrar = document.getElementById('btnMostrar');
+const spanResultados = document.getElementById('spanResultados');
 
 // ----------------------------------------------------------------------------------------
 // Variables Globales
@@ -14,25 +15,6 @@ let autoRegistrado;
 // ----------------------------------------------------------------------------------------
 // Funciones
 // ----------------------------------------------------------------------------------------
-// Funcion que crea la tarjeta que muestra datos del auto
-const crearTarjetaDatos = () => {
-  const spanResultados = document.getElementById('spanResultados');
-
-  const tarjeta = document.createElement('div');
-  tarjeta.classList.add('tarjeta');
-  
-  const cajaImagenTarjeta = document.createElement('div');
-  cajaImagenTarjeta.classList.add('cajaImagenTarjeta');
-  cajaImagenTarjeta.classList.add('icon-car');
-  
-  
-  const cajaDatosTarjeta = document.createElement('div');
-  cajaDatosTarjeta.classList.add('cajaDatosTarjeta');
-
-
-  spanResultados.appendChild(tarjeta);
-  tarjeta.append(cajaImagenTarjeta,cajaDatosTarjeta);
-}
 
 // Funcion que extrae el valor de los inputs y los guarda en un Array
 const extraerValoresInputs = () => {
@@ -71,12 +53,50 @@ const instanciarAuto = (codigo, marca, modelo, color, anio, titular) => {
   return auto;
 }
 
+// Funcion que crea la tarjeta y le inserta la información de los autos registrados
+const mostrarDatosEnTarjeta = () => {
+
+  // Formato para mostrar datos
+  arrayAutos.forEach((auto) => {
+    let elemento = '';
+    elemento = `
+    Marca: ${auto.marca}\n
+    Modelo: ${auto.modelo}\n
+    Color: ${auto.color}\n
+    Año: ${auto.anio}\n
+    Titular: ${auto.titular}
+    `;
+
+    // Creo Tarjeta y le asigno clase CSS
+    const tarjeta = document.createElement('div');
+    tarjeta.classList.add('tarjeta');
+
+    // Creo div para mostrar icono de auto en la tarjeta
+    const cajaImagenTarjeta = document.createElement('div');
+    cajaImagenTarjeta.classList.add('cajaImagenTarjeta');
+    cajaImagenTarjeta.classList.add('icon-car');
+
+    // Creo div para Mostrar los Datos del auto
+    const cajaDatosTarjeta = document.createElement('div');
+    cajaDatosTarjeta.classList.add('cajaDatosTarjeta');
+
+    // Imprimo los datos del auto en la tarjeta en varias lineas
+    cajaDatosTarjeta.innerHTML = elemento;
+    cajaDatosTarjeta.style.whiteSpace = 'pre-line';
+
+    // Agrego elementos creados y su contenido a sus padres
+    spanResultados.appendChild(tarjeta);
+    tarjeta.append(cajaImagenTarjeta, cajaDatosTarjeta);
+
+  });
+}
+
 // ----------------------------------------------------------------------------------------
 // Programa Principal
 // ----------------------------------------------------------------------------------------
+
+// Botón Registrar Autos
 btnRegistrar.addEventListener('click', () => {
-  // elemento del array de autos (auto instanciado)
-  let elemento='';
 
   // Incremento el codigo del auto para llevar consecutivo
   codigo++;
@@ -90,26 +110,16 @@ btnRegistrar.addEventListener('click', () => {
   // Agrego la instancia al array de autos
   arrayAutos.push(autoRegistrado);
 
-  // guardo en variable los autos registrados
-  arrayAutos.forEach((auto) => {
-    elemento += `Codigo: ${auto.codigo}
-    Marca: ${auto.marca}
-    Modelo: ${auto.modelo}
-    Color: ${auto.color}
-    Año: ${auto.anio}
-    Titular: ${auto.titular}
-    \n`;
-    // div.innerHTML = elemento;
-  });
+  alert(JSON.stringify(arrayAutos, null, 2));
 
-  // Muestro los autos registrados
-  alert(elemento)
+  // Limpio inputs para nuevos ingresos
+  document.querySelectorAll('input[type="text"]').forEach(input => input.value = '');
 
 });
 
+// Botón Mostrar Resultados en tarjetas
 btnMostrar.addEventListener('click', () => {
-  for (let i = 1; i <= 4; i++) {
-    crearTarjetaDatos();
-  }
+  spanResultados.innerHTML = '';
+  mostrarDatosEnTarjeta();
 });
 
