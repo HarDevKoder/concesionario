@@ -11,6 +11,7 @@ const spanResultados = document.getElementById("spanResultados");
 let codigo = 0;
 let arrayAutos = [];
 let autoRegistrado;
+let valoresInputsArr = [];
 
 // ----------------------------------------------------------------------------------------
 // Funciones
@@ -89,28 +90,51 @@ const mostrarDatosEnTarjeta = () => {
   });
 };
 
+// Función que Realiza validaciones de los inputs
+const validarInputs = (valoresInputsArr) => {
+  let datosValidos = false;
+  // valido inputs vacios
+  if (valoresInputsArr.some(input => input === '')) {
+    alert('llena todos los campos!');
+  } else {
+    datosValidos = true;
+  }
+  return datosValidos;
+}
+
 // ----------------------------------------------------------------------------------------
 // Programa Principal
 // ----------------------------------------------------------------------------------------
 
 // Botón Registrar Autos
 btnRegistrar.addEventListener("click", () => {
-  // Incremento el codigo del auto para llevar consecutivo
-  codigo++;
+  let respuestaValidación;
 
-  // Extraigo los valores ingresados en el formulario (desestructuracion)
-  [marca, modelo, color, anio, titular] = extraerValoresInputs();
+  // Obtengo array con los valores de los inputs a validar
+  valoresInputsArr = extraerValoresInputs();
 
-  // Instancio el auto a registrar
-  autoRegistrado = instanciarAuto(codigo, marca, modelo, color, anio, titular);
+  // Valido datos ingresados
+  respuestaValidación = validarInputs(valoresInputsArr);
 
-  // Agrego la instancia al array de autos
-  arrayAutos.push(autoRegistrado);
+  // Acciones si pasa la validación
+  if (respuestaValidación) {
+    // Incremento el codigo del auto para llevar consecutivo
+    codigo++;
 
-  // Limpio inputs para nuevos ingresos
-  document
-    .querySelectorAll('input[type="text"]')
-    .forEach((input) => (input.value = ""));
+    // Extraigo los valores ingresados en el formulario (desestructuracion)
+    [marca, modelo, color, anio, titular] = extraerValoresInputs();
+
+    // Instancio el auto a registrar
+    autoRegistrado = instanciarAuto(codigo, marca, modelo, color, anio, titular);
+
+    // Agrego la instancia al array de autos
+    arrayAutos.push(autoRegistrado);
+
+    // Limpio inputs para nuevos ingresos
+    document
+      .querySelectorAll('input[type="text"]')
+      .forEach((input) => (input.value = ""));
+  }
 });
 
 // Botón Mostrar Resultados en tarjetas
