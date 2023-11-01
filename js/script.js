@@ -3,6 +3,7 @@
 // ----------------------------------------------------------------------------------------
 const btnRegistrar = document.getElementById("btnRegistrar");
 const btnMostrar = document.getElementById("btnMostrar");
+const btnVenderAuto = document.getElementById("btnVenderAuto");
 const spanResultados = document.getElementById("spanResultados");
 
 // ----------------------------------------------------------------------------------------
@@ -39,13 +40,8 @@ function Auto(codigo, marca, modelo, color, anio, titular) {
 }
 
 // Método para vender el Auto (cambiar el titular)
-Auto.prototype.venderAuto = function (auto, titular) {
-  auto.titular = titular;
-};
-
-// Método para encender el Auto
-Auto.prototype.encender = function (auto) {
-  alert(`El Auto ${auto} está  en marcha`);
+Auto.prototype.venderAuto = function (nuevoTitular) {
+  this.titular = nuevoTitular;
 };
 
 // Función para instanciar Autos
@@ -60,6 +56,7 @@ const mostrarDatosEnTarjeta = () => {
   arrayAutos.forEach((auto) => {
     let elemento = "";
     elemento = `
+    Codigo: ${auto.codigo}\n
     Marca: ${auto.marca}\n
     Modelo: ${auto.modelo}\n
     Color: ${auto.color}\n
@@ -97,8 +94,11 @@ const validarInputs = (valoresInputsArr) => {
   if (valoresInputsArr.some(input => input === '')) {
     alert('llena todos los campos!');
   } else {
-    //Extraigo el año de los datos inresados
+    // Extraigo el año de los datos ingresados
     let anio = valoresInputsArr.splice(3, 1)[0];
+
+    // Elimino el modelo del array para que no sea validado
+    valoresInputsArr.splice(1, 1);
 
     // Evaluo los inputs de text para evitar ingresos numericos
     let regex = /[\d]/g;
@@ -123,6 +123,10 @@ const validarInputs = (valoresInputsArr) => {
 
 // Botón Registrar Autos
 btnRegistrar.addEventListener("click", () => {
+  // Extraigo los valores ingresados en el formulario (desestructuracion)
+  [marca, modelo, color, anio, titular] = extraerValoresInputs();
+
+  // Variable que guarda el estado de las validaciones
   let respuestaValidación;
 
   // Obtengo array con los valores de los inputs a validar
@@ -133,11 +137,9 @@ btnRegistrar.addEventListener("click", () => {
 
   // Acciones si pasa la validación
   if (respuestaValidación) {
+
     // Incremento el codigo del auto para llevar consecutivo
     codigo++;
-
-    // Extraigo los valores ingresados en el formulario (desestructuracion)
-    [marca, modelo, color, anio, titular] = extraerValoresInputs();
 
     // Instancio el auto a registrar
     autoRegistrado = instanciarAuto(codigo, marca, modelo, color, anio, titular);
@@ -164,3 +166,11 @@ btnMostrar.addEventListener("click", () => {
     spanResultados.style.visibility = "hidden";
   }
 });
+
+// Boton para vender un auto
+btnVenderAuto.addEventListener('click', () => {
+  let posicion = Number(prompt('Ingresa Código del Auto a vender:'));
+  let nuevoTitular = prompt('Ingresa Nombre del nuevo titular:');
+  arrayAutos[posicion - 1].venderAuto(nuevoTitular);
+  alert('Venta Realizada!');
+})
