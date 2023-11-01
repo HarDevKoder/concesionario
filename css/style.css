@@ -176,4 +176,12 @@ button:hover {
   .spanResultados > * {
     flex-basis: 49%;
   }
+
+  .tarjeta {
+    padding-top: 5px;
+  }
+
+  .cajaImagenTarjeta {
+    font-size: 43px;
+  }
 }
